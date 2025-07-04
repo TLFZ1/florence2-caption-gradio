@@ -22,13 +22,13 @@
 
 ## 💿 安装与环境准备
 
-在运行脚本前，请确保您已准备好相应的环境。
+### 第一步：获取代码
+首先，将本仓库克隆（下载）到您的本地电脑，并进入项目目录。
+```bash
+git clone https://github.com/TLFZ1/florence2-caption-gradio.git
+```
 
-**1. 前提条件**
-* 已安装 Python 3.8 或更高版本。
-* 已安装NVIDIA显卡，并正确配置了CUDA驱动。
-
-**2. 创建虚拟环境 (推荐)**
+### 第二步：创建并激活 Conda 环境
 建议使用`conda`或`venv`创建一个独立的Python虚拟环境，以避免与系统环境或其他项目产生冲突。
 
 ```bash
@@ -37,46 +37,26 @@ conda create -n florence2 python=3.10.8
 conda activate florence2
 ```
 
-**3. 安装依赖**
-将以下内容保存到一个名为 `requirements.txt` 的文件中，然后运行`pip`命令进行安装。
-
-**`requirements.txt` 文件内容:**
-```txt
-torch
-transformers
-gradio
-tqdm
-Pillow
-# 以下为可选的高性能包，建议安装
+### 第三步：安装依赖
+接着，使用 pip 安装运行此工具所必需的所有 Python 库。
+```bash
+cd .....\florence2-caption-gradio
+pip install -r requirements.txt
+```
+提示: 如果下载速度过慢，可以尝试使用国内镜像，例如：
+```bash
+pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+```
+最好安装flash attn加速模型推理
+```bash
 # flash-attn --no-build-isolation
 ```
 
-**安装命令:**
+### 第四步：运行程序
+最后，启动工具的图形化界面。
 ```bash
-pip install -r requirements.txt
+python florence2.py
 ```
-* **注意**: `flash-attn` 的安装可能需要较长时间并依赖编译环境。如果安装失败，脚本依然可以通过默认的`sdpa`模式正常运行。
-
-## 🚀 如何使用
-
-1.  **修改默认值 (可选)**:
-    直接打开 `.py` 脚本文件，在顶部的“Gradio界面默认值配置区”修改各项参数的默认值。
-
-2.  **运行脚本**:
-    在您的终端中，激活虚拟环境，然后运行以下命令：
-    ```bash
-    python your_script_name.py
-    ```
-    (请将 `your_script_name.py` 替换为您保存的实际文件名)
-
-3.  **打开浏览器**:
-    脚本运行后，终端会显示一个本地网址，通常是 `http://127.0.0.1:7860`。脚本会自动在您的默认浏览器中打开这个地址。
-
-4.  **配置并开始任务**:
-    在打开的网页界面中：
-    * 设置**输入图片文件夹**和**输出标签文件夹**。
-    * 根据需要调整其他模型、性能和生成参数。
-    * 点击“**开始批量打标**”按钮，即可开始任务。
 
 ## ⚙️ 参数详解
 
